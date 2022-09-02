@@ -1,4 +1,9 @@
 var swiper = new Swiper(".mySwiper", {
+    cssMode: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
     spaceBetween: 30,
     centeredSlides: true,
     autoplay: {
