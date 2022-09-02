@@ -89,7 +89,6 @@ body {
     padding: 2.5rem 2rem;
     background-color: #ffffffaa;
     color: var(--green);
-    border-radius: .3rem;
     opacity: .9;
 }
 
@@ -133,14 +132,12 @@ body {
     align-items: center;
     justify-content: space-between;
     letter-spacing: 3px;
-    border-radius: .3rem;
 }
 
 .side-bar .day .start,
 .side-bar .day .end {
     background: var(--koigreen);
     padding: .5rem 1rem;
-    border-radius: .3rem;
     width: 45%;
 }
 
@@ -176,7 +173,6 @@ body {
 .side-bar .space {
     background: var(--koigreen);
     padding: .5rem 1rem;
-    border-radius: .3rem;
     margin-top: 1rem;
 }
 
@@ -234,7 +230,6 @@ body {
     margin: -.5rem 0;
     color: #ddd;
     box-shadow: var(--shadow);
-    border-radius: .3rem;
     cursor: pointer;
 }
 
