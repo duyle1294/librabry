@@ -10,12 +10,98 @@
 </head>
 
 <body>
-    <img class="mySlides" src="./Assets/ss_sample01.jpg">
-    <img class="mySlides" src="./Assets/ss_sample02.jpg">
-    <img class="mySlides" src="./Assets/ss_sample03.jpg">
-    <img class="mySlides" src="./Assets/ss_sample04.jpg">
-    <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+
+    <div class="wrapper">
+
+        <div class="content">
+            <div class="slider">
+                <img class="mySlides" src="./Assets/ss_sample01.jpg">
+                <img class="mySlides" src="./Assets/ss_sample02.jpg">
+                <img class="mySlides" src="./Assets/ss_sample03.jpg">
+                <img class="mySlides" src="./Assets/ss_sample04.jpg">
+            </div>
+            <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+        </div>
+        
+        <div class="side-bar">
+            <div class="top">
+
+                <div class="title">
+                    学びの社ののいち　<span>カレード</span>
+                </div>
+
+                <div class="container">
+
+                    <div class="day">
+
+                        <div class="start">
+                            <div class="label">
+                                今日
+                            </div>
+                            <div class="date">
+                                7<span>月</span>17<span>日</span>
+                            </div>
+                        </div>
+
+                        <div class="icon">
+                            →
+                        </div>
+
+                        <div class="end">
+                            <div class="label">
+                                返却日
+                            </div>
+                            <div class="date">
+                                7<span>月</span>31<span>日</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="space">
+
+                        <div class="contain">
+
+                            <div class="label">
+                                施設空き状況
+                            </div>
+
+                            <div class="box">
+                                <div class="sub">AVコーナー</div>
+                                <div class="status"><i class="fa-regular fa-circle"></i> 空</div>
+                            </div>
+
+                            <div class="box">
+                                <div class="sub">ｲﾝﾀﾈｯﾄｺｰﾅｰ</div>
+                                <div class="status"><i class="fa-regular fa-circle"></i> 空</div>
+                            </div>
+
+                            <div class="box">
+                                <div class="sub">学習室</div>
+                                <div class="status full"><i class="fa-solid fa-xmark"></i> 満足</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <nav class="navbar">
+                <div class="nav-item active"><i class="fa-solid fa-bookmark"></i></i>お知らせ</div>
+                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>フロア案内</div>
+                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>新刊案内</div>
+                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>ベストリーダー</div>
+                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>ベストオーダー</div>
+                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>イベント案内</div>
+                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>のっティ 時刻表</div>
+            </nav>
+        </div>
+
+    </div>
 
     <script src="app.js"></script>
 </body>
