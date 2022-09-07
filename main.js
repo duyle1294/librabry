@@ -16,3 +16,7 @@ var swiper = new Swiper(".mySwiper", {
     },
     loop: true,
 });
+
+var bg = document.getElementById("bgHolder");
+TweenLite.to(bg, 10, { css: { x: 500, y: 700 } });
+TweenLite.to(bg, 10, { css: { scale: 3 } });
