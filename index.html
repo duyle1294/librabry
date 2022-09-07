@@ -13,72 +13,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js">
 </head>
 
 <body>
     <div class="wrapper">
-        <img id="exp" src="./Assets/exp-02.png" alt="">
 
-        <!-- <div class="content">
-            <div class="new">
-
-                <div class="title">
-                    図書館からのお知らせ
-                </div>
-
-                <div class="time">
-
-                    <div class="box">
-                        <div class="subtitle">
-                            <h3>開館時間</h3>
-                        </div>
-                        <div class="text">
-                            ・火曜日から金曜日　午前10時から午後7時まで<br>
-                            ・土曜日・日曜日　午前10時から午後5時まで
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="subtitle">
-                            <h3>休館日</h3>
-                        </div>
-                        <div class="text">
-                            ・月曜日、年末・年始<br>
-                            ・国民の祝日に関する法律に限定する祝日
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="slider">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="./Assets/ss_sample01.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./Assets/ss_sample02.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./Assets/ss_sample03.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./Assets/ss_sample04.jpg" alt="">
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./Assets/ss_sample05.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-
+        <div class="content">
+            <div class="switch new active">
+                new
             </div>
-        </div> -->
+            <div class="switch floor-map">
+                floor-map
+            </div>
+            <div class="switch new-books">
+                new-books
+            </div>
+            <div class="switch events">
+                events
+            </div>
+            <div class="switch time-table">
+                time-table
+            </div>
+        </div>
 
         <div class="side-bar">
 
@@ -151,8 +107,6 @@
                 <div class="nav-item active"><i class="fa-solid fa-bookmark"></i></i>お知らせ</div>
                 <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>フロア案内</div>
                 <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>新刊案内</div>
-                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>ベストリーダー</div>
-                <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>ベストオーダー</div>
                 <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>イベント案内</div>
                 <div class="nav-item"><i class="fa-solid fa-bookmark"></i></i>のっティ 時刻表</div>
             </nav>
@@ -160,10 +114,6 @@
         </div>
 
     </div>
-
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
     <script src="main.js"></script>

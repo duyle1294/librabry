@@ -1,22 +1,23 @@
-var swiper = new Swiper(".mySwiper", {
-    cssMode: true,
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    spaceBetween: 30,
-    centeredSlides: true,
-    autoplay: {
-        delay: 4500,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    loop: true,
-});
+var contents = document.querySelectorAll('.switch');
+var navBtns = document.querySelectorAll('.nav-item');
 
-var bg = document.getElementById("bgHolder");
-TweenLite.to(bg, 10, { css: { x: 500, y: 700 } });
-TweenLite.to(bg, 10, { css: { scale: 3 } });
+console.log(contents,navBtns);
+
+for (let i = 0; i < contents.length; i++) {
+
+    activeBtn = navBtns[i];
+    activeContent = contents[i];
+
+    navBtns[i].onclick = () => {
+        contents[0].classList.remove('active');
+        navBtns[0].classList.remove('active');
+
+        activeBtn.classList.remove('active');
+        activeContent.classList.remove('active');
+        contents[i].classList.toggle('active');
+        navBtns[i].classList.toggle('active');
+
+        activeBtn = navBtns[i];
+        activeContent = contents[i];
+    }
+}
