@@ -1,0 +1,12 @@
+version: "3"
+services:
+  app:
+    container_name: digital-signage
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: stg-digital
+    ports:
+      - "8100:80"
+    volumes:
+      - ./:/var/www/html/
