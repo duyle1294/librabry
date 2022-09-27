@@ -84,33 +84,34 @@ var eventModals = document.querySelectorAll('.events .modal')
 var eventBtns = document.querySelectorAll('.event-item .detail');
 var closeModals = document.querySelectorAll('.events .modal .close-modal')
 var bubbles = document.querySelectorAll('.fukidashi');
-var floorModal = document.querySelector('.floor-map .modal')
-var closeFloor = document.querySelector('.floor-map .modal .close-modal button')
+var floorModals = document.querySelectorAll('.floor-map .modal')
+var closeFloors = document.querySelectorAll('.floor-map .modal .close-modal button')
 console.log(bubbles);
 
 for (let index = 0; index < eventModals.length; index++) {
-  
-  eventBtns[index].onclick = () =>{
+
+  eventBtns[index].onclick = () => {
     eventModals[index].classList.toggle('active')
   }
 
-  closeModals[index].onclick = () =>{
+  closeModals[index].onclick = () => {
     eventModals[index].classList.remove('active')
   }
-  
+
 }
 
+for (let index = 0; index < bubbles.length; index++) {
 
-closeFloor.onclick = () => {
-  floorModal.classList.remove('active')
-}
-
-for (let bubble of bubbles) {
-  bubble.onclick = () => {
-    floorModal.classList.toggle('active');
-    console.log(bubble);
+  bubbles[index].onclick = () => {
+    floorModals[index].classList.toggle('active')
   }
+
+  closeFloors[index].onclick = () => {
+    floorModals[index].classList.remove('active')
+  }
+
 }
+
 
 // icon area function
 var icons = document.querySelectorAll('.footer-icon .icon')
@@ -218,9 +219,9 @@ document.querySelector('.icon.icon-8').onclick = () => {
 }
 
 document.querySelector('.floor-1.icon-9').onclick = () => {
-  if (!document.querySelector('.icon.icon-9').classList.contains('active')) {
+  if (!document.querySelector('.floor-1.icon-9').classList.contains('active')) {
     iconArea()
-    document.querySelector('.floor-1.icon-9').classList.toggle('active')
+    document.querySelector('.area.icon-9').classList.toggle('active')
     document.querySelector('.floor-1.icon-9').classList.toggle('active')
   } else {
     offArea()
@@ -329,27 +330,26 @@ $(window).click(function () {
 
   clearTimeout(next);
 
-  next= setTimeout(() => {
+  next = setTimeout(() => {
     location.reload(true)
-  }, 40000);
+  }, 50000);
 
 });
 
 $(document).ready(function () {
 
-  next= setTimeout(() => {
+  next = setTimeout(() => {
     location.reload(true)
-  }, 40000);
+  }, 50000);
 
   $(".newslide, .booksslide").each(function () {
     $(this).owlCarousel({
       items: 1,
       loop: true,
       nav: true,
-      dots: true,
       autoplay: true,
-      autoplaySpeed: 500,
-      smartSpeed: 600,
+      autoplaySpeed: 1000,
+      autoplayTimeout: 10000,
       slideTransition: 'linear',
       margin: 600,
       autoplayHoverPause: true,
@@ -402,3 +402,19 @@ for (let i = 0; i < paginations; i++) {
   }
 }
 
+
+
+function displayTime() {
+  var dateTime = new Date();
+  var hrs = dateTime.getHours();
+  var min = dateTime.getMinutes();
+
+  if (min < 10) {
+    min = `0${min}`
+  } else {
+    min = min
+  }
+
+  document.getElementById('time').innerHTML = `${hrs}:${min}`;
+}
+setInterval(displayTime, 1000);

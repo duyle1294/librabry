@@ -24,7 +24,7 @@
 
                     <?php
                     setlocale(LC_ALL, 'ja_JP.UTF-8');
-                    $handle = fopen("csv/slide_data1.csv", "r");
+                    $handle = fopen("CSV/slide_data1.csv", "r");
                     $data = fgetcsv($handle, 1000, ",");
                     $jsondata = [];
 
@@ -151,27 +151,40 @@
                         </div>
 
                         <div class="details">
-                            <div class="modal modal-1">
-                                <div class="container">
-                                    <div class="bg"></div>
-                                    <div class="heading">
-                                        <div class="number">
-                                            2F
-                                        </div>
-                                        <span class="title">
-                                            学習室
-                                        </span>
-                                    </div>
-                                    <div class="subject">
-                                        個人の学習スペースとして 、集中して学習できる空間です。<br>
-                                        ご利用の際は窓口において、事前に予約してください。
-                                    </div>
-                                    <div class="image">
 
-                                    </div>
-                                    <div class="close-modal"><button>閉じる</button></div>
+                            <?php
+                            setlocale(LC_ALL, 'ja_JP.UTF-8');
+                            $handle = fopen("CSV/floor_map.csv", "r");
+                            $data = fgetcsv($handle, 1000, ",");
+                            $jsondata = [];
+
+                            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                                $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
+                                $jsondata[] = str_replace('[CRLF]', '<br>', $data);
+                            }
+                            $num = count($jsondata);
+                            $index = 0;
+                            foreach ($jsondata as &$value) {
+                                $index++;
+                                echo "
+                            <div class='modal modal-$index'>
+
+                            <div class='container'>
+                                <div class='bg'></div>
+                                <div class='heading'>
+                                    <div class='number'>$value[1]</div>
+                                    <span class='title'>$value[4]</span>
                                 </div>
+                                <div class='subject'>$value[9]</div>
+                                <div class='image'></div>
+                                <div class='close-modal'><button>閉じる</button></div>
                             </div>
+
+                            </div>
+                            ";
+                            }
+                            fclose($handle);
+                            ?>
                         </div>
 
                     </div>
@@ -214,7 +227,7 @@
 
                     <?php
                     setlocale(LC_ALL, 'ja_JP.UTF-8');
-                    $handle = fopen("csv/slide_data2.csv", "r");
+                    $handle = fopen("CSV/slide_data2.csv", "r");
                     $data = fgetcsv($handle, 1000, ",");
                     $jsondata = [];
 
@@ -257,7 +270,7 @@
                 <div class="event-list">
                     <?php
                     setlocale(LC_ALL, 'ja_JP.UTF-8');
-                    $handle = fopen("csv/event_data.csv", "r");
+                    $handle = fopen("CSV/event_data.csv", "r");
                     $data = fgetcsv($handle, 1000, ",");
                     $jsondata = [];
 
@@ -266,7 +279,7 @@
                         $temp = tmpfile();
                         $meta = stream_get_meta_data($temp);
                         rewind($temp);
-                        $jsondata[] = $data;
+                        $jsondata[] = str_replace('[CRLF]', '<br>', $data);
                     }
                     $index = 0;
                     foreach ($jsondata as $keys) {
@@ -305,7 +318,7 @@
                 <div class="modals-wrapper">
                     <?php
                     setlocale(LC_ALL, 'ja_JP.UTF-8');
-                    $handle = fopen("csv/event_data.csv", "r");
+                    $handle = fopen("CSV/event_data.csv", "r");
                     $data = fgetcsv($handle, 1000, ",");
                     $jsondata = [];
 
@@ -314,7 +327,7 @@
                         $temp = tmpfile();
                         $meta = stream_get_meta_data($temp);
                         rewind($temp);
-                        $jsondata[] = $data;
+                        $jsondata[] = str_replace('[CRLF]', '<br>', $data);
                     }
                     $index = 0;
                     foreach ($jsondata as $keys) {
@@ -360,82 +373,147 @@
                     <div class="qrcode">
                         <img src="./Assets/bus_timetable/QR-CODE_90x90.png" alt="">
                     </div>
-                    <div class="time">
-                        15:50
+                    <div class="time" id="time">
+
                     </div>
                 </div>
 
                 <div class="container animate three fadeIn">
 
                     <div class="table table-1">
-                        <div class="row">
-                            <div class="hour">7</div>
-                            <div class="time">
-                                <div class="bus"><span>1</span>7:00</div>
-                                <div class="bus"><span>1</span>7:00</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="hour">7</div>
-                            <div class="time">
-                                <div class="bus"><span>1</span>7:00</div>
-                                <div class="bus"><span>1</span>7:00</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="hour">19</div>
-                            <div class="time">
-                                <div class="bus"><span>10</span>7:00</div>
-                                <div class="bus"><span>10</span>7:00</div>
-                            </div>
-                        </div>
+
+                        <?php
+                        setlocale(LC_ALL, 'ja_JP.UTF-8');
+                        $handle = fopen("CSV/timetable_data.csv", "r");
+                        $data = fgetcsv($handle, 1000, ",");
+                        $jsondata = [];
+
+                        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                            $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
+                            $jsondata[] = $data;
+                        }
+                        $index = 0;
+                        foreach ($jsondata as $keys) {
+                            $index++;
+                            if ($keys[0] == 1) {
+                                if ($keys[4]) {
+                                    echo "
+                                <div class='row'>
+                                    <div class='hour'>$keys[1]</div>
+                                    <div class='time'>
+                                        <div class='bus'><span>$keys[2]</span>$keys[3]</div>
+                                        <div class='bus'><span>$keys[4]</span>$keys[5]</div>
+                                    </div>
+                                </div>";
+                                } else {
+                                    echo "
+                                <div class='row'>
+                                    <div class='hour'>$keys[1]</div>
+                                    <div class='time'>
+                                        <div class='bus'><span>$keys[2]</span>$keys[3]</div>
+                                    </div>
+                                </div>";
+                                }
+                            }
+                        };
+                        fclose($handle);
+                        ?>
 
                         <div class="footer">
-                            <div class="box">
-                                16:03
-                            </div>
-                            <div class="box">
-                                16:03
-                            </div>
-                            <div class="box">
-                                16:03
-                            </div>
+                            <?php
+                            setlocale(LC_ALL, 'ja_JP.UTF-8');
+                            $handle = fopen("CSV/timetable_data.csv", "r");
+                            $data = fgetcsv($handle, 1000, ",");
+                            $jsondata = [];
+
+                            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                                $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
+                                $jsondata[] = str_replace('[CRLF]', '<br>', $data);
+                            }
+                            $num = count($jsondata);
+                            date_default_timezone_set('Asia/Tokyo');
+                            $runningTime = date('H:i') . "<br>";
+                            $hour = (int)date('H');
+                            foreach ($jsondata as $keys) {
+                                if ($keys[3] > $runningTime && $keys[0] == 1 && $keys[3] > $hour) {
+                                    $newdata[] = [$keys[3]];
+                                }
+                                if ($keys[5] > $runningTime && $keys[0] == 1 && $keys[5] > $hour) {
+                                    $newdata[] = [$keys[5]];
+                                }
+                            }
+                            echo "<div class='box'>" . $newdata[0][0] . "</div>";
+                            echo "<div class='box'>" . $newdata[1][0] . "</div>";
+                            echo "<div class='box'>" . $newdata[2][0] . "</div>";
+
+                        ?>
                         </div>
                     </div>
 
                     <div class="table table-2">
-                        <div class="row">
-                            <div class="hour">7</div>
-                            <div class="time">
-                                <div class="bus"><span>10</span>7:00</div>
-                                <div class="bus"><span>10</span>7:00</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="hour">7</div>
-                            <div class="time">
-                                <div class="bus"><span>10</span>7:00</div>
-                                <div class="bus"><span>10</span>7:00</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="hour">7</div>
-                            <div class="time">
-                                <div class="bus"><span>10</span>7:00</div>
-                                <div class="bus"><span>10</span>7:00</div>
-                            </div>
-                        </div>
+                        <?php
+                        setlocale(LC_ALL, 'ja_JP.UTF-8');
+                        $handle = fopen("CSV/timetable_data.csv", "r");
+                        $data = fgetcsv($handle, 1000, ",");
+                        $jsondata = [];
+
+                        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                            $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
+                            $jsondata[] = $data;
+                        }
+                        foreach ($jsondata as $keys) {
+                            $index++;
+                            if ($keys[0] == 2) {
+                                if ($keys[4]) {
+                                    echo "
+                                <div class='row'>
+                                    <div class='hour'>$keys[1]</div>
+                                    <div class='time'>
+                                        <div class='bus'><span>$keys[2]</span>$keys[3]</div>
+                                        <div class='bus'><span>$keys[4]</span>$keys[5]</div>
+                                    </div>
+                                </div>";
+                                } else {
+                                    echo "
+                                <div class='row'>
+                                    <div class='hour'>$keys[1]</div>
+                                    <div class='time'>
+                                        <div class='bus'><span>$keys[2]</span>$keys[3]</div>
+                                    </div>
+                                </div>";
+                                }
+                            }
+                        };
+                        fclose($handle);
+                        ?>
 
                         <div class="footer">
-                            <div class="box">
-                                16:03
-                            </div>
-                            <div class="box">
-                                16:03
-                            </div>
-                            <div class="box">
-                                16:03
-                            </div>
+                            <?php
+                            setlocale(LC_ALL, 'ja_JP.UTF-8');
+                            $handle = fopen("CSV/timetable_data.csv", "r");
+                            $data = fgetcsv($handle, 1000, ",");
+                            $jsondata = [];
+
+                            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                                $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
+                                $jsondata[] = str_replace('[CRLF]', '<br>', $data);
+                            }
+                            date_default_timezone_set('Asia/Tokyo');
+                            $runningTime = date('H:i') . "<br>";
+                            $hour = (int)date('H');
+                            foreach ($jsondata as $keys) {
+                                if ($keys[3] > $runningTime && $keys[0] == 2 && $keys[3] > $hour) {
+                                    $newdata2[] = [$keys[3]];
+                                }
+                                if ($keys[5] > $runningTime && $keys[0] == 2 && $keys[5] > $hour) {
+                                    $newdata2[] = [$keys[5]];
+                                }
+                            }
+
+                            echo "<div class='box'>". $newdata2[0][0]."</div>";
+                            echo "<div class='box'>". $newdata2[1][0]."</div>";
+                            echo "<div class='box'>". $newdata2[2][0]."</div>";
+                            ?>
                         </div>
                     </div>
 
@@ -451,10 +529,44 @@
 
                 <div class="date">
                     <div class="now">
-                        7<span>12</span>
+                        <div class="month">
+                            <?php
+                            date_default_timezone_set('Asia/Tokyo');
+                            echo $runningTime = date('m');
+                            ?>
+                        </div>
+                        <div class="day">
+                            <?php
+                            date_default_timezone_set('Asia/Tokyo');
+                            echo $runningTime = date('d');
+                            ?>
+                        </div>
                     </div>
                     <div class="return">
-                        9<span>12</span>
+                        <?php
+                        setlocale(LC_ALL, 'ja_JP.UTF-8');
+                        $handle = fopen("CSV/return_calendar.csv", "r");
+                        $data = fgetcsv($handle, 1000, ",");
+                        $jsondata = [];
+
+                        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                            $data = mb_convert_encoding($data, 'UTF-8', 'sjis-win');
+                            $temp = tmpfile();
+                            $meta = stream_get_meta_data($temp);
+                            rewind($temp);
+                            $jsondata[] = str_replace('[CRLF]', '<br>', $data);
+                        }
+                        $num = count($jsondata);
+                        $today = date("Y/m/d");
+                        foreach ($jsondata as $keys) {
+                            if ($keys[0] == $today) {
+                                echo "<div class='month'>" . $keys[1][-5] . $keys[1][-4] . "</div>";
+                                echo "<div class='day'>" . $keys[1][-2] . $keys[1][-1] . "</div>";
+                            }
+                        }
+                        ?>
+                        <!-- <div class='month'></div>
+                        <div class='day'></div> -->
                     </div>
                 </div>
 
@@ -480,7 +592,6 @@
 
     <script src="./Assets/animation/jquery.js"></script>
     <script src="./Assets/animation/owl.carousel.min.js"></script>
-    <script src="./Assets/info/fake-data.js"></script>
     <script src="main.js"></script>
 
 </body>
